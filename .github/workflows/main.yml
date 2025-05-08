@@ -16,6 +16,13 @@ jobs:
           java-version: "17"
           distribution: "adopt"
 
+          
+      - name: Check Android SDK
+        run: |
+          echo "ANDROID_HOME is $ANDROID_HOME"
+          ls -l $ANDROID_HOME/build-tools/
+          ls -l $ANDROID_HOME/build-tools/34.0.0/
+          
       - name: Build Perseus APK
         run: ./patch_perseus.sh
 
@@ -27,6 +34,6 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
           draft: true
-          title: "Perseus Release v${{ env.PERSEUS_VERSION }}"
+          title: "Perseus Release"
           files: |
             build/*.apk
